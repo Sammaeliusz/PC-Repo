@@ -1,14 +1,14 @@
 x = 1:0.1:20;
-z = rand(size(x));
-a = 1;
-theta_z_daszkiem = zeros(1,191)
+zaklocenia = rand(size(x));
+steepness = 1;
+estymator = zeros(1,191);
 MSE = zeros(1,100);
-for h=1:100
-    y = a*x+z;
-    for t=1:191
-        theta_z_daszkiem(t) = 1/h*(sum(y(max(1, t-h):t)));
+for d_historii=1:100
+    y = steepness*x+zaklocenia;
+    for time=1:191
+        estymator(time) = 1/d_historii*(sum(y(max(1, time-d_historii):t)));
     end
-    MSE(h) = mse(theta_z_daszkiem,x);
+    MSE(h) = mse(estymator,x);
 end
 min_v = 1;
 max_v = 100;
@@ -18,4 +18,4 @@ min(MSE)
 figure
 hold on
 plot(x, y);
-plot(x, theta_z_daszkiem);
+plot(x, estymator);
