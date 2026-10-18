@@ -1,24 +1,43 @@
-function ret = mse(est, tru)
-    ret = sum((est-tru).^2)/length(est);
-end
-x = 1:0.1:20;
-zaklocenia = rand(size(x));
-steepness = 1;
-estymator = zeros(1,191);
-MSE = zeros(1,100);
-for d_historii=1:100
-    y = steepness*x+zaklocenia;
-    for time=1:191
-        estymator(time) = 1/d_historii*(sum(y(max(1, time-d_historii):time)));
+clear all; close all;
+
+x = 1:1:100;    
+Start = 15;  
+Noise = (rand(size(x))*2*Start) - Start; % [-1.5, 1.5]
+Steepness = 1.2;
+y = x * Steepness + Start;
+Data = y + Noise;
+
+Estimator = zeros(1, length(y));
+MSE = zeros(1, 100);
+
+little=1000000;
+bestMemory=0;
+
+for Memory = 1:100
+    for i = 1:length(x)
+        Estimator(i) = ((sum(Data(max(1, i - Memory):i))) / Memory) + Start;
     end
-    MSE(d_historii) = mse(estymator,x);
+    MSE(Memory) = mean((Estimator - y).^2); % E( (Theta^ - Theta*)^2 )
+    if MSE(Memory)<little 
+        little = MSE(Memory);
+        bestMemory = Memory;
+    end
 end
-min_v = 1;
-max_v = 100;
+
+for i = 1:length(x)
+    Estimator(i) = ((sum(Data(max(1, i - bestMemory):i))) / bestMemory) + Start;
+end
+
 figure
-plot(min_v:max_v, MSE(min_v:max_v));
-min(MSE)
+plot(1:100, MSE);
+title('MSE vs Memory');
+xlabel('Memory');
+ylabel('MSE');
+
 figure
 hold on
 plot(x, y);
-plot(x, estymator);
+scatter(x, Data);
+plot(x, Estimator);
+legend('True y', 'Data with Noise', 'Estimator');
+hold off
