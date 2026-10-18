@@ -15,7 +15,7 @@ bestMemory=0;
 
 for Memory = 1:100
     for i = 1:length(x)
-        Estimator(i) = ((sum(Data(max(1, i - Memory):i))) / Memory) + Start;
+        Estimator(i) = (sum(Data(max(1, i - Memory):i))) / Memory;
     end
     MSE(Memory) = mean((Estimator - y).^2); % E( (Theta^ - Theta*)^2 )
     if MSE(Memory)<little 
@@ -25,7 +25,7 @@ for Memory = 1:100
 end
 
 for i = 1:length(x)
-    Estimator(i) = ((sum(Data(max(1, i - bestMemory):i))) / bestMemory) + Start;
+    Estimator(i) = (sum(Data(max(1, i - bestMemory):i))) / bestMemory;
 end
 
 figure
