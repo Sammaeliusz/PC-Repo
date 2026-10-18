@@ -2,16 +2,24 @@
 erDiagram
 GRA{
     int ID PK
-    int wlasciciel_Id FK
     string Nazwa
     decimal Ciezkosc
     int Min_graczy
     int Max_graczy
     time Czas
     enum Gatunek
-    set Tagi
     bool Kooperacja
+}
+KOLEKCJA{
+    int ID PK
+    int wlasciciel_Id FK
+    int gra_Id FK
     bool Dostepna
+    int ocena
+}
+TAGOGRY_TBD{
+    int gra_Id
+    int tag_Id
 }
 GRACZ{
     int ID PK
@@ -40,10 +48,17 @@ WYPOZYCZENIA{
     date data_zwrotu
 
 }
-GRA }|--|| GRACZ: wlasciciel_Id
+TAGI{
+    int ID PK
+    string nazwa
+}
+KOLEKCJA }|--|| GRACZ: wlasciciel_Id
+KOLEKCJA }o--o{ GRA: gra_Id
 ROZGRYWKI }|--|| GRA: gra_Id
 GRACZE_ROZGRYWKI }o--|{ GRACZ: gracz_Id
 GRACZE_ROZGRYWKI }|--|| ROZGRYWKI: rozgrywka_Id
-WYPOZYCZENIA }o--|{ GRA: gra_Id
+WYPOZYCZENIA }o--|{ KOLEKCJA: gra_Id
 WYPOZYCZENIA }o--|{ GRACZ: wypozyczajacy_Id
+TAGI }|--o{ TAGOGRY_TBD: tag_Id
+GRA }o--o{ TAGOGRY_TBD: gra_Id
 ```
