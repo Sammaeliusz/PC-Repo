@@ -27,9 +27,6 @@ GRACZ{
     string Email UK
     string Nazwa_gracza UK
     decimal Max_ciezkosc
-    set Ulubione_tagi_Id
-    set Nielubiane_tagi_Id
-    set Znajomi_Id
 }
 ROZGRYWKI{
     int ID PK
@@ -55,6 +52,15 @@ TAGI{
     int ID PK
     string Zawartosc
 }
+ZNAJOMI{
+    int Gracz1_Id FK
+    int Gracz2_Id FK
+}
+TAG_GRACZE{
+    int Gracz_Id FK
+    int Tag_Id FK
+    bool Lubi
+}
 KOLEKCJA }|--|| GRACZ: Wlasciciel_Id
 KOLEKCJA }o--o{ GRA: Gra_Id
 ROZGRYWKI }|--|| GRA: Gra_Id
@@ -65,4 +71,8 @@ WYPOZYCZENIA }o--|{ GRACZ: Wypozyczajacy_Id
 TAGI }|--o{ TAG_GRY: Tag_Id
 GRA }o--o{ TAG_GRY: Gra_Id
 KOLEKCJA }o--o{ TAG_GRY: Instancja_Id
+ZNAJOMI }o--|| GRACZ: Gracz1_Id
+ZNAJOMI }o--|| GRACZ: Gracz2_Id
+TAG_GRACZ }o--|| GRACZ: Gracz_Id
+TAG_GRACZ }o--|| TAG: Tag_Id
 ```
