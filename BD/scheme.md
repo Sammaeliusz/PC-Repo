@@ -18,8 +18,9 @@ KOLEKCJA{
     int Ocena
 }
 TAG_GRY{
-    int Gra_Id PK
-    set Tag_Id
+    int Gra_Id FK
+    int Tag_Id FK
+    int Instancja_Id FK
 }
 GRACZ{
     int ID PK
@@ -63,4 +64,5 @@ WYPOZYCZENIA }o--|{ KOLEKCJA: Gra_Id
 WYPOZYCZENIA }o--|{ GRACZ: Wypozyczajacy_Id
 TAGI }|--o{ TAG_GRY: Tag_Id
 GRA }o--o{ TAG_GRY: Gra_Id
+KOLEKCJA }o--o{ TAG_GRY: Instancja_Id
 ```
