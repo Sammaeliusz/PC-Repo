@@ -73,6 +73,6 @@ GRA }o--o{ TAG_GRY: Gra_Id
 KOLEKCJA }o--o{ TAG_GRY: Instancja_Id
 ZNAJOMI }o--|| GRACZ: Gracz1_Id
 ZNAJOMI }o--|| GRACZ: Gracz2_Id
-TAG_GRACZ }o--|| GRACZ: Gracz_Id
-TAG_GRACZ }o--|| TAG: Tag_Id
+TAG_GRACZE }o--|| GRACZ: Gracz_Id
+TAG_GRACZE }o--|| TAGI: Tag_Id
 ```
