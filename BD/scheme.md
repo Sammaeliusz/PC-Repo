@@ -27,6 +27,7 @@ GRACZ{
     string Email UK
     string Nazwa_gracza UK
     decimal Max_ciezkosc
+    time Preferowany_czas
 }
 ROZGRYWKI{
     int ID PK
@@ -75,4 +76,58 @@ ZNAJOMI }o--|| GRACZ: Gracz1_Id
 ZNAJOMI }o--|| GRACZ: Gracz2_Id
 TAG_GRACZE }o--|| GRACZ: Gracz_Id
 TAG_GRACZE }o--|| TAGI: Tag_Id
+```
+``` mermaid
+stateDiagram-v2
+    [*] --> Stworzenie_konta
+
+    Stworzenie_konta --> Konto_aktywne
+    Konto_aktywne --> IDLE
+    IDLE --> Dodanie_gry
+    IDLE --> Dodanie_rozgrywki
+    Dodanie_rozgrywki --> Dodanie_graczy_i_wyników
+    Dodanie_graczy_i_wyników --> IDLE
+    Dodanie_gry --> Dodanie_instancji : Gra istnieje
+    Dodanie_gry --> Dodanie_tytułu : Gra nie istnieje
+    Dodanie_tytułu --> Dodanie_tagów_do_tytułu : Istniejący tag
+    Dodanie_tytułu --> Dodanie_tagów_do_listy_tagów_ : Nieistniejący tag
+    Dodanie_tagów_do_tytułu --> Dodanie_instancji
+    Dodanie_tagów_do_listy_tagów_ --> Dodanie_tagów_do_tytułu
+    Dodanie_instancji --> Dodanie_tagów_do_listy_tagów : Nieistniejące tagi
+    Dodanie_instancji --> Dodanie_tagów_do_gry : Istniejące tagi
+    Dodanie_tagów_do_listy_tagów --> Dodanie_tagów_do_gry
+    Dodanie_tagów_do_gry --> IDLE
+    IDLE --> Wyświetlenie_listy_gier
+    Wyświetlenie_listy_gier --> Wybór_bibliotek
+    Wybór_bibliotek --> Wybór_filtrów
+    Wybór_filtrów --> Wyniki
+    Wyniki --> IDLE
+    IDLE --> Generacja_statystyk
+    Generacja_statystyk --> Statystyki_rozgrywek 
+    Generacja_statystyk --> Statystyki_gier
+    Statystyki_rozgrywek --> Wybór_dat : Wszystkie grane tytuły
+    Statystyki_rozgrywek --> Wybór_gry : Jeden tytuł
+    Wybór_dat --> Raport
+    Wybór_gry --> Wybór_dat
+    Statystyki_gier --> Wybór_gry : Wybrany tytuł
+    Statystyki_gier --> Wybór_dat : Wszystkie tytuły w kolekcji gracza
+    Raport --> IDLE
+    IDLE --> Dodanie_znajomego
+    Dodanie_znajomego --> IDLE
+    IDLE --> Wypożyczenie
+    Wypożyczenie --> Wybór_kopii_gry
+    Wybór_kopii_gry --> Wybór_gracza_który_pożycza
+    Wybór_gracza_który_pożycza --> Wybór_terminu_wypożyczenia
+    Wybór_terminu_wypożyczenia --> Wybór_terminu_zwrotu
+    Wybór_terminu_zwrotu --> IDLE
+    IDLE --> Konfiguracja_konta
+    Konfiguracja_konta --> IDLE : Wyjście
+    Konfiguracja_konta --> Wybór_max_ciężkości
+    Konfiguracja_konta --> Wybór_preferowanego_czasu
+    Wybór_preferowanego_czasu --> Konfiguracja_konta
+    Wybór_max_ciężkości --> Konfiguracja_konta
+    Konfiguracja_konta --> Wybór_preferancji_tagów
+    Wybór_preferancji_tagów --> Dodanie_tagów_do_listy : Tagi nie istnieje
+    Wybór_preferancji_tagów --> Konfiguracja_konta : Tagi istnieją
+    Dodanie_tagów_do_listy --> Konfiguracja_konta
 ```
