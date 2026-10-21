@@ -128,4 +128,6 @@ stateDiagram-v2
     Wybór_preferancji_tagów --> Dodanie_tagów_do_listy : Tagi nie istnieje
     Wybór_preferancji_tagów --> Konfiguracja_konta : Tagi istnieją
     Dodanie_tagów_do_listy --> Konfiguracja_konta
+    IDLE --> Wyloguj
+    Wyloguj --> [*]
 ```
