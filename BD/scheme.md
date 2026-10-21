@@ -90,10 +90,7 @@ stateDiagram-v2
     Dodanie_graczy_i_wyników --> IDLE
     Dodanie_gry --> Dodanie_instancji : Gra istnieje
     Dodanie_gry --> Dodanie_tytułu : Gra nie istnieje
-    Dodanie_tytułu --> Dodanie_tagów_do_tytułu : Istniejący tag
-    Dodanie_tytułu --> Dodanie_tagów_do_listy_tagów_ : Nieistniejący tag
-    Dodanie_tagów_do_tytułu --> Dodanie_instancji
-    Dodanie_tagów_do_listy_tagów_ --> Dodanie_tagów_do_tytułu
+    Dodanie_tytułu --> Dodanie_instancji
     Dodanie_instancji --> Dodanie_tagów_do_listy_tagów : Nieistniejące tagi
     Dodanie_instancji --> Dodanie_tagów_do_gry : Istniejące tagi
     Dodanie_tagów_do_listy_tagów --> Dodanie_tagów_do_gry
