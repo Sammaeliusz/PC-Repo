@@ -113,9 +113,9 @@ stateDiagram-v2
     IDLE --> Dodanie_znajomego
     Dodanie_znajomego --> IDLE
     IDLE --> Wypożyczenie
-    Wypożyczenie --> Wybór_kopii_gry
-    Wybór_kopii_gry --> Wybór_gracza_który_pożycza
-    Wybór_gracza_który_pożycza --> Wybór_terminu_wypożyczenia
+    Wypożyczenie --> Wybór_gracza_który_pożycza
+    Wybór_gracza_który_pożycza --> Wybór_instancji_gry
+    Wybór_instancji_gry --> Wybór_terminu_wypożyczenia
     Wybór_terminu_wypożyczenia --> Wybór_terminu_zwrotu
     Wybór_terminu_zwrotu --> IDLE
     IDLE --> Konfiguracja_konta
