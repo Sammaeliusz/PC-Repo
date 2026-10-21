@@ -28,6 +28,7 @@ GRACZ{
     string Nazwa_gracza UK
     decimal Max_ciezkosc
     time Preferowany_czas
+    int PIN
 }
 ROZGRYWKI{
     int ID PK
