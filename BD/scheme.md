@@ -28,6 +28,7 @@ GRACZ{
     string Nazwa_gracza UK
     decimal Max_ciezkosc
     time Preferowany_czas
+    int PIN
 }
 ROZGRYWKI{
     int ID PK
@@ -89,10 +90,7 @@ stateDiagram-v2
     Dodanie_graczy_i_wyników --> IDLE
     Dodanie_gry --> Dodanie_instancji : Gra istnieje
     Dodanie_gry --> Dodanie_tytułu : Gra nie istnieje
-    Dodanie_tytułu --> Dodanie_tagów_do_tytułu : Istniejący tag
-    Dodanie_tytułu --> Dodanie_tagów_do_listy_tagów_ : Nieistniejący tag
-    Dodanie_tagów_do_tytułu --> Dodanie_instancji
-    Dodanie_tagów_do_listy_tagów_ --> Dodanie_tagów_do_tytułu
+    Dodanie_tytułu --> Dodanie_instancji
     Dodanie_instancji --> Dodanie_tagów_do_listy_tagów : Nieistniejące tagi
     Dodanie_instancji --> Dodanie_tagów_do_gry : Istniejące tagi
     Dodanie_tagów_do_listy_tagów --> Dodanie_tagów_do_gry
@@ -115,9 +113,9 @@ stateDiagram-v2
     IDLE --> Dodanie_znajomego
     Dodanie_znajomego --> IDLE
     IDLE --> Wypożyczenie
-    Wypożyczenie --> Wybór_kopii_gry
-    Wybór_kopii_gry --> Wybór_gracza_który_pożycza
-    Wybór_gracza_który_pożycza --> Wybór_terminu_wypożyczenia
+    Wypożyczenie --> Wybór_gracza_który_pożycza
+    Wybór_gracza_który_pożycza --> Wybór_instancji_gry
+    Wybór_instancji_gry --> Wybór_terminu_wypożyczenia
     Wybór_terminu_wypożyczenia --> Wybór_terminu_zwrotu
     Wybór_terminu_zwrotu --> IDLE
     IDLE --> Konfiguracja_konta
@@ -130,4 +128,6 @@ stateDiagram-v2
     Wybór_preferancji_tagów --> Dodanie_tagów_do_listy : Tagi nie istnieje
     Wybór_preferancji_tagów --> Konfiguracja_konta : Tagi istnieją
     Dodanie_tagów_do_listy --> Konfiguracja_konta
+    IDLE --> Wyloguj
+    Wyloguj --> [*]
 ```
