@@ -10,7 +10,25 @@ next_pass = SubResource("PlaceholderMaterial_8hxoa")
 [sub_resource type="BoxMesh" id="BoxMesh_126ht"]
 material = SubResource("StandardMaterial3D_uchyk")
 
+[sub_resource type="Sky" id="Sky_uchyk"]
+
+[sub_resource type="Environment" id="Environment_126ht"]
+background_mode = 1
+background_color = Color(0.05756113, 0.4364125, 0.6467294, 1)
+sky = SubResource("Sky_uchyk")
+
 [node name="Node3D" type="Node3D" unique_id=689650400]
+
+[node name="OmniLight3D" type="OmniLight3D" parent="." unique_id=459530045]
+transform = Transform3D(0.9309355, 0, 0.36518356, 0, 1, 0, -0.36518356, 0, 0.9309355, 1.3482878, 3.0347452, 2.6278863)
+light_color = Color(0, 1, 0, 1)
+light_energy = 3.966
+light_indirect_energy = 3.69
+omni_range = 34.655
+
+[node name="Camera3D" type="Camera3D" parent="." unique_id=465386055]
+transform = Transform3D(0.8832157, -0.10537967, 0.4569739, 0, 0.9744266, 0.22470595, -0.46896696, -0.19846383, 0.8606289, 1.1250181, 1.4088764, 1.7140911)
+current = true
 
 [node name="StaticBody3D" type="StaticBody3D" parent="." unique_id=1427176165]
 
@@ -20,6 +38,5 @@ shape = SubResource("BoxShape3D_126ht")
 [node name="MeshInstance3D" type="MeshInstance3D" parent="StaticBody3D" unique_id=1027060124]
 mesh = SubResource("BoxMesh_126ht")
 
-[node name="Camera3D" type="Camera3D" parent="." unique_id=465386055]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 2.1517618)
-current = true
+[node name="WorldEnvironment" type="WorldEnvironment" parent="." unique_id=262713238]
+environment = SubResource("Environment_126ht")

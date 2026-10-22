@@ -42,16 +42,16 @@ script = ExtResource("1_q0uhn")
 [node name="VBoxContainer" type="VBoxContainer" parent="MarginContainer" unique_id=1431461424]
 layout_mode = 2
 
-[node name="HSlider" type="HSlider" parent="MarginContainer/VBoxContainer" unique_id=657065598]
-layout_mode = 2
-max_value = 1.0
-step = 0.01
-
 [node name="SpinBox" type="SpinBox" parent="MarginContainer/VBoxContainer" unique_id=2034226594]
 layout_mode = 2
 max_value = 1.0
 step = 0.01
 alignment = 1
 
-[connection signal="value_changed" from="MarginContainer/VBoxContainer/HSlider" to="MarginContainer/VBoxContainer/SpinBox" method="set_value_no_signal"]
+[node name="HSlider" type="HSlider" parent="MarginContainer/VBoxContainer" unique_id=657065598]
+layout_mode = 2
+max_value = 1.0
+step = 0.01
+
 [connection signal="value_changed" from="MarginContainer/VBoxContainer/SpinBox" to="MarginContainer/VBoxContainer/HSlider" method="set_value_no_signal"]
+[connection signal="value_changed" from="MarginContainer/VBoxContainer/HSlider" to="MarginContainer/VBoxContainer/SpinBox" method="set_value_no_signal"]
