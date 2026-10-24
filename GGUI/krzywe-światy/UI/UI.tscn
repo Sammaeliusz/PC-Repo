@@ -1,5 +1,6 @@
 [gd_scene format=3 uid="uid://cmc5a4dqynjn3"]
 
+[ext_resource type="Script" uid="uid://dthr3u0nyr2gd" path="res://Signal_tunel.gd" id="1_dhe1o"]
 [ext_resource type="Script" uid="uid://dmopm1jk8rq7j" path="res://UI/Size_Controll.gd" id="1_q0uhn"]
 
 [sub_resource type="GDScript" id="GDScript_3b2b5"]
@@ -16,14 +17,14 @@ func _process(_delta: float) -> void:
 	pass
 "
 
-[node name="Control" type="Control" unique_id=2142729161]
+[node name="UI" type="Control" unique_id=2142729161]
 layout_mode = 3
 anchors_preset = 15
 anchor_right = 1.0
 anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
-script = ExtResource("1_q0uhn")
+script = ExtResource("1_dhe1o")
 
 [node name="MarginContainer" type="MarginContainer" parent="." unique_id=641256585]
 layout_mode = 0
@@ -36,22 +37,44 @@ theme_override_constants/margin_bottom = 5
 script = SubResource("GDScript_3b2b5")
 
 [node name="Panel" type="Panel" parent="MarginContainer" unique_id=1858312212]
+visible = false
 layout_mode = 2
 script = ExtResource("1_q0uhn")
 
 [node name="VBoxContainer" type="VBoxContainer" parent="MarginContainer" unique_id=1431461424]
 layout_mode = 2
+size_flags_vertical = 8
 
-[node name="SpinBox" type="SpinBox" parent="MarginContainer/VBoxContainer" unique_id=2034226594]
+[node name="HBoxContainer" type="HBoxContainer" parent="MarginContainer/VBoxContainer" unique_id=504929809]
+layout_mode = 2
+alignment = 1
+
+[node name="HBoxContainer3" type="HBoxContainer" parent="MarginContainer/VBoxContainer/HBoxContainer" unique_id=1196130220]
+layout_mode = 2
+size_flags_horizontal = 3
+
+[node name="HBoxContainer" type="HBoxContainer" parent="MarginContainer/VBoxContainer/HBoxContainer" unique_id=451638008]
+layout_mode = 2
+size_flags_horizontal = 3
+
+[node name="HBoxContainer2" type="HBoxContainer" parent="MarginContainer/VBoxContainer/HBoxContainer" unique_id=351854421]
+layout_mode = 2
+size_flags_horizontal = 3
+alignment = 1
+
+[node name="SpinBox" type="SpinBox" parent="MarginContainer/VBoxContainer/HBoxContainer/HBoxContainer2" unique_id=2034226594]
 layout_mode = 2
 max_value = 1.0
 step = 0.01
 alignment = 1
 
-[node name="HSlider" type="HSlider" parent="MarginContainer/VBoxContainer" unique_id=657065598]
+[node name="HSlider" type="HSlider" parent="MarginContainer/VBoxContainer/HBoxContainer/HBoxContainer2" unique_id=657065598]
 layout_mode = 2
+size_flags_horizontal = 3
+size_flags_vertical = 1
 max_value = 1.0
 step = 0.01
 
-[connection signal="value_changed" from="MarginContainer/VBoxContainer/SpinBox" to="MarginContainer/VBoxContainer/HSlider" method="set_value_no_signal"]
-[connection signal="value_changed" from="MarginContainer/VBoxContainer/HSlider" to="MarginContainer/VBoxContainer/SpinBox" method="set_value_no_signal"]
+[connection signal="value_changed" from="MarginContainer/VBoxContainer/HBoxContainer/HBoxContainer2/SpinBox" to="MarginContainer/VBoxContainer/HBoxContainer/HBoxContainer2/HSlider" method="set_value"]
+[connection signal="value_changed" from="MarginContainer/VBoxContainer/HBoxContainer/HBoxContainer2/HSlider" to="MarginContainer/VBoxContainer/HBoxContainer/HBoxContainer2/SpinBox" method="set_value_no_signal"]
+[connection signal="value_changed" from="MarginContainer/VBoxContainer/HBoxContainer/HBoxContainer2/HSlider" to="." method="_tunel" binds= [0]]

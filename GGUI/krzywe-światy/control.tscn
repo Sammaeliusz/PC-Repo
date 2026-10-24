@@ -1,5 +1,21 @@
 [gd_scene format=3 uid="uid://cbqog3ohiwero"]
 
+[ext_resource type="PackedScene" uid="uid://cmc5a4dqynjn3" path="res://UI/UI.tscn" id="1_62e2m"]
+[ext_resource type="Script" uid="uid://bhc016w12uovm" path="res://Doswietlanie.gd" id="2_qtu10"]
+[ext_resource type="Script" uid="uid://drs76qdvf62hf" path="res://Controller.gd" id="3_qtu10"]
+
+[sub_resource type="Sky" id="Sky_uchyk"]
+
+[sub_resource type="Environment" id="Environment_126ht"]
+background_mode = 1
+background_color = Color(0.05756113, 0.4364125, 0.6467294, 1)
+sky = SubResource("Sky_uchyk")
+
+[sub_resource type="WorldBoundaryShape3D" id="WorldBoundaryShape3D_gcxk6"]
+
+[sub_resource type="PlaneMesh" id="PlaneMesh_v2sh2"]
+size = Vector2(20, 20)
+
 [sub_resource type="BoxShape3D" id="BoxShape3D_126ht"]
 
 [sub_resource type="PlaceholderMaterial" id="PlaceholderMaterial_8hxoa"]
@@ -10,33 +26,56 @@ next_pass = SubResource("PlaceholderMaterial_8hxoa")
 [sub_resource type="BoxMesh" id="BoxMesh_126ht"]
 material = SubResource("StandardMaterial3D_uchyk")
 
-[sub_resource type="Sky" id="Sky_uchyk"]
+[sub_resource type="CapsuleShape3D" id="CapsuleShape3D_gcxk6"]
 
-[sub_resource type="Environment" id="Environment_126ht"]
-background_mode = 1
-background_color = Color(0.05756113, 0.4364125, 0.6467294, 1)
-sky = SubResource("Sky_uchyk")
+[sub_resource type="CapsuleMesh" id="CapsuleMesh_gcxk6"]
 
 [node name="Node3D" type="Node3D" unique_id=689650400]
+
+[node name="UI" parent="." unique_id=2142729161 instance=ExtResource("1_62e2m")]
 
 [node name="OmniLight3D" type="OmniLight3D" parent="." unique_id=459530045]
 transform = Transform3D(0.9309355, 0, 0.36518356, 0, 1, 0, -0.36518356, 0, 0.9309355, 1.3482878, 3.0347452, 2.6278863)
 light_color = Color(0, 1, 0, 1)
-light_energy = 3.966
+light_energy = 4.441
 light_indirect_energy = 3.69
 omni_range = 34.655
-
-[node name="Camera3D" type="Camera3D" parent="." unique_id=465386055]
-transform = Transform3D(0.8832157, -0.10537967, 0.4569739, 0, 0.9744266, 0.22470595, -0.46896696, -0.19846383, 0.8606289, 1.1250181, 1.4088764, 1.7140911)
-current = true
-
-[node name="StaticBody3D" type="StaticBody3D" parent="." unique_id=1427176165]
-
-[node name="CollisionShape3D" type="CollisionShape3D" parent="StaticBody3D" unique_id=1010407806]
-shape = SubResource("BoxShape3D_126ht")
-
-[node name="MeshInstance3D" type="MeshInstance3D" parent="StaticBody3D" unique_id=1027060124]
-mesh = SubResource("BoxMesh_126ht")
+script = ExtResource("2_qtu10")
 
 [node name="WorldEnvironment" type="WorldEnvironment" parent="." unique_id=262713238]
 environment = SubResource("Environment_126ht")
+
+[node name="Podłoże" type="StaticBody3D" parent="." unique_id=359036663]
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Podłoże" unique_id=670744033]
+shape = SubResource("WorldBoundaryShape3D_gcxk6")
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="Podłoże" unique_id=1458863494]
+mesh = SubResource("PlaneMesh_v2sh2")
+
+[node name="RigidBody3D" type="RigidBody3D" parent="." unique_id=846963744]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.8746152, 0)
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="RigidBody3D" unique_id=1010407806]
+shape = SubResource("BoxShape3D_126ht")
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="RigidBody3D" unique_id=1027060124]
+mesh = SubResource("BoxMesh_126ht")
+
+[node name="Player" type="RigidBody3D" parent="." unique_id=266393988]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 2.2933323, 3.4980211)
+axis_lock_angular_x = true
+axis_lock_angular_z = true
+script = ExtResource("3_qtu10")
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Player" unique_id=1496630970]
+shape = SubResource("CapsuleShape3D_gcxk6")
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="Player" unique_id=326454559]
+mesh = SubResource("CapsuleMesh_gcxk6")
+
+[node name="Camera3D" type="Camera3D" parent="Player" unique_id=465386055]
+transform = Transform3D(-4.371139e-08, -0.0975829, 0.9952274, 0, 0.9952274, 0.0975829, -1, 4.265484e-09, -4.350277e-08, 0, 0.6174834, 0)
+current = true
+
+[connection signal="tunneled_signal" from="UI" to="OmniLight3D" method="_change_energy"]
