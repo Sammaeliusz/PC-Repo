@@ -1,5 +1,19 @@
 clear all; close all;
-
+function result = min_value_per_plot(plots)
+    result = zeros(2, size(plots, 1));
+    for i = 1:size(plots, 1)
+        plot_min = plots(i,1);
+        best_x = 1;
+        for j = 1:size(plots, 2)
+            if(plots(i,j)<plot_min)
+                best_x = j;
+                plot_min = plots(i, j);
+            end
+        end
+        result(1,i) = best_x;
+        result(2,i) = plot_min;
+    end
+end
 x = 1:1:100;
 Start = 1;
 Kernel = 10;
@@ -21,10 +35,10 @@ for Steepness = 1:Simulation_Step:4
             Estimator(i) = (sum(Data(max(1, i - Memory):i))) / Memory;
         end
     
-        MSE(floor(Steepness/Simulation_Step),Memory) = mean((Estimator - y).^2); % E( (Theta^ - Theta*)^2 )
+        MSE(ceil(Steepness/Simulation_Step),Memory) = mean((Estimator - y).^2); % E( (Theta^ - Theta*)^2 )
         
-        if MSE(floor(Steepness/Simulation_Step),Memory)<little 
-            little = MSE(floor(Steepness/Simulation_Step),Memory);
+        if MSE(ceil(Steepness/Simulation_Step),Memory)<little 
+            little = MSE(ceil(Steepness/Simulation_Step),Memory);
             bestMemory = Memory;
         end
     end
@@ -50,12 +64,14 @@ title('MSE vs Memory');
 xlabel('Memory');
 ylabel('MSE');
 ylim([0 500]);
+min_value_per_plot(MSE)
 
-kernel_min = 5;
-kernel_max = 15;
-MSE = zeros((kernel_max-kernel_min)/Simulation_Step, 100);
+clear MSE;
+kernel_min = 1;
+kernel_max = 10;
 Steepness = 1;
 Simulation_Step = 1;
+MSE = zeros(ceil((kernel_max-kernel_min)/Simulation_Step), 100);
 for Kernel = kernel_min:Simulation_Step:kernel_max
     Noise = (rand(size(x))*2*Kernel) - Kernel; % [-1.5, 1.5]
     y = x * Steepness + Start;
@@ -71,10 +87,10 @@ for Kernel = kernel_min:Simulation_Step:kernel_max
             Estimator(i) = (sum(Data(max(1, i - Memory):i))) / Memory;
         end
     
-        MSE(floor(Kernel/Simulation_Step),Memory) = mean((Estimator - y).^2); % E( (Theta^ - Theta*)^2 )
+        MSE(ceil(Kernel/Simulation_Step),Memory) = mean((Estimator - y).^2); % E( (Theta^ - Theta*)^2 )
         
-        if MSE(floor(Kernel/Simulation_Step),Memory)<little 
-            little = MSE(floor(Kernel/Simulation_Step),Memory);
+        if MSE(ceil(Kernel/Simulation_Step),Memory)<little 
+            little = MSE(ceil(Kernel/Simulation_Step),Memory);
             bestMemory = Memory;
         end
     end
@@ -83,7 +99,7 @@ for Kernel = kernel_min:Simulation_Step:kernel_max
         Estimator(i) = (sum(Data(max(1, i - bestMemory):i))) / bestMemory;
     end
 
-%{
+%%{
     figure
     hold on
     plot(x, y);
@@ -101,3 +117,4 @@ title('MSE vs Memory');
 xlabel('Memory');
 ylabel('MSE');
 ylim([0 150]);
+min_value_per_plot(MSE)
