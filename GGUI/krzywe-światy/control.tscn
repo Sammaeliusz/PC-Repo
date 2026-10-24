@@ -1,20 +1,21 @@
 [gd_scene format=3 uid="uid://cbqog3ohiwero"]
 
 [ext_resource type="PackedScene" uid="uid://cmc5a4dqynjn3" path="res://UI/UI.tscn" id="1_62e2m"]
+[ext_resource type="PackedScene" uid="uid://bbn6pucn63hwh" path="res://Prefabs/Building/budynek.tscn" id="1_ee4bf"]
 [ext_resource type="Script" uid="uid://bhc016w12uovm" path="res://Doswietlanie.gd" id="2_qtu10"]
 [ext_resource type="Script" uid="uid://drs76qdvf62hf" path="res://Controller.gd" id="3_qtu10"]
 
 [sub_resource type="Sky" id="Sky_uchyk"]
 
 [sub_resource type="Environment" id="Environment_126ht"]
-background_mode = 1
+background_mode = 2
 background_color = Color(0.05756113, 0.4364125, 0.6467294, 1)
 sky = SubResource("Sky_uchyk")
 
 [sub_resource type="WorldBoundaryShape3D" id="WorldBoundaryShape3D_gcxk6"]
 
 [sub_resource type="PlaneMesh" id="PlaneMesh_v2sh2"]
-size = Vector2(20, 20)
+size = Vector2(500, 500)
 
 [sub_resource type="BoxShape3D" id="BoxShape3D_126ht"]
 
@@ -32,15 +33,12 @@ material = SubResource("StandardMaterial3D_uchyk")
 
 [node name="Node3D" type="Node3D" unique_id=689650400]
 
-[node name="UI" parent="." unique_id=2142729161 instance=ExtResource("1_62e2m")]
+[node name="Budynek" parent="." unique_id=2131609820 instance=ExtResource("1_ee4bf")]
+transform = Transform3D(0.8110944, 0, -0.5849153, 0, 1, 0, 0.5849153, 0, 0.8110944, -33.04, 0.5, 4.43)
+metadata/Scale = 10.0
+metadata/Height = 5
 
-[node name="OmniLight3D" type="OmniLight3D" parent="." unique_id=459530045]
-transform = Transform3D(0.9309355, 0, 0.36518356, 0, 1, 0, -0.36518356, 0, 0.9309355, 1.3482878, 3.0347452, 2.6278863)
-light_color = Color(0, 1, 0, 1)
-light_energy = 4.441
-light_indirect_energy = 3.69
-omni_range = 34.655
-script = ExtResource("2_qtu10")
+[node name="UI" parent="." unique_id=2142729161 instance=ExtResource("1_62e2m")]
 
 [node name="WorldEnvironment" type="WorldEnvironment" parent="." unique_id=262713238]
 environment = SubResource("Environment_126ht")
@@ -53,14 +51,23 @@ shape = SubResource("WorldBoundaryShape3D_gcxk6")
 [node name="MeshInstance3D" type="MeshInstance3D" parent="Podłoże" unique_id=1458863494]
 mesh = SubResource("PlaneMesh_v2sh2")
 
-[node name="RigidBody3D" type="RigidBody3D" parent="." unique_id=846963744]
+[node name="CUBE" type="RigidBody3D" parent="." unique_id=846963744]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.8746152, 0)
 
-[node name="CollisionShape3D" type="CollisionShape3D" parent="RigidBody3D" unique_id=1010407806]
+[node name="CollisionShape3D" type="CollisionShape3D" parent="CUBE" unique_id=1010407806]
 shape = SubResource("BoxShape3D_126ht")
 
-[node name="MeshInstance3D" type="MeshInstance3D" parent="RigidBody3D" unique_id=1027060124]
+[node name="MeshInstance3D" type="MeshInstance3D" parent="CUBE" unique_id=1027060124]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.014008999, 0)
 mesh = SubResource("BoxMesh_126ht")
+
+[node name="OmniLight3D" type="OmniLight3D" parent="CUBE" unique_id=459530045]
+transform = Transform3D(0.93093556, 0, 0.3651836, 0, 1, 0, -0.3651836, 0, 0.93093556, 0, 0, 0)
+light_color = Color(0, 1, 0, 1)
+light_energy = 4.441
+light_indirect_energy = 3.69
+omni_range = 34.655
+script = ExtResource("2_qtu10")
 
 [node name="Player" type="RigidBody3D" parent="." unique_id=266393988]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 2.2933323, 3.4980211)
@@ -78,4 +85,13 @@ mesh = SubResource("CapsuleMesh_gcxk6")
 transform = Transform3D(-4.371139e-08, -0.0975829, 0.9952274, 0, 0.9952274, 0.0975829, -1, 4.265484e-09, -4.350277e-08, 0, 0.6174834, 0)
 current = true
 
-[connection signal="tunneled_signal" from="UI" to="OmniLight3D" method="_change_energy"]
+[node name="SpotLight3D" type="SpotLight3D" parent="Player" unique_id=1361962665]
+transform = Transform3D(-4.371139e-08, 0, 1, 0, 1, 0, -1, 0, -4.371139e-08, 0, 0, 0)
+light_color = Color(0.77254903, 0.5529412, 0, 1)
+light_energy = 6.269
+light_indirect_energy = 2.82
+light_specular = 0.275
+spot_range = 13.539
+spot_angle = 18.1577
+
+[connection signal="tunneled_signal" from="UI" to="CUBE/OmniLight3D" method="_change_energy"]

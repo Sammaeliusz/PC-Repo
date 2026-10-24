@@ -1,0 +1,36 @@
+[gd_scene format=3 uid="uid://bbn6pucn63hwh"]
+
+[ext_resource type="Script" uid="uid://crfi5dpqdl87p" path="res://Prefabs/Resizer.gd" id="1_pquve"]
+
+[sub_resource type="Gradient" id="Gradient_c8jhs"]
+interpolation_mode = 2
+offsets = PackedFloat32Array(0, 0.8191882, 1)
+colors = PackedColorArray(0, 0, 0, 1, 0.9629789, 0.9629789, 0.9629789, 1, 1, 1, 1, 1)
+
+[sub_resource type="GradientTexture2D" id="GradientTexture2D_2d2cx"]
+gradient = SubResource("Gradient_c8jhs")
+fill_from = Vector2(0.3931624, 0.88461536)
+fill_to = Vector2(0.93162394, 0.13247864)
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_xsuxa"]
+blend_mode = 1
+albedo_color = Color(0, 0.5058824, 0.80784315, 1)
+albedo_texture = SubResource("GradientTexture2D_2d2cx")
+
+[sub_resource type="BoxMesh" id="BoxMesh_gcxk6"]
+material = SubResource("StandardMaterial3D_xsuxa")
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_v2sh2"]
+
+[node name="Budynek" type="Node3D" unique_id=2131609820]
+script = ExtResource("1_pquve")
+metadata/Scale = 5.0
+metadata/Height = 10
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="." unique_id=1299918008]
+mesh = SubResource("BoxMesh_gcxk6")
+
+[node name="StaticBody3D" type="StaticBody3D" parent="." unique_id=947940294]
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="StaticBody3D" unique_id=18349161]
+shape = SubResource("BoxShape3D_v2sh2")
