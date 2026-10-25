@@ -2,23 +2,7 @@
 
 [ext_resource type="Script" uid="uid://crfi5dpqdl87p" path="res://Prefabs/Resizer.gd" id="1_pquve"]
 
-[sub_resource type="Gradient" id="Gradient_c8jhs"]
-interpolation_mode = 2
-offsets = PackedFloat32Array(0, 0.8191882, 1)
-colors = PackedColorArray(0, 0, 0, 1, 0.9629789, 0.9629789, 0.9629789, 1, 1, 1, 1, 1)
-
-[sub_resource type="GradientTexture2D" id="GradientTexture2D_2d2cx"]
-gradient = SubResource("Gradient_c8jhs")
-fill_from = Vector2(0.3931624, 0.88461536)
-fill_to = Vector2(0.93162394, 0.13247864)
-
-[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_xsuxa"]
-blend_mode = 1
-albedo_color = Color(0, 0.5058824, 0.80784315, 1)
-albedo_texture = SubResource("GradientTexture2D_2d2cx")
-
 [sub_resource type="BoxMesh" id="BoxMesh_gcxk6"]
-material = SubResource("StandardMaterial3D_xsuxa")
 
 [sub_resource type="BoxShape3D" id="BoxShape3D_v2sh2"]
 

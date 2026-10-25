@@ -33,7 +33,12 @@ material = SubResource("StandardMaterial3D_uchyk")
 
 [node name="Node3D" type="Node3D" unique_id=689650400]
 
-[node name="Budynek" parent="." unique_id=2131609820 instance=ExtResource("1_ee4bf")]
+[node name="Budynek2" parent="." unique_id=2131609820 instance=ExtResource("1_ee4bf")]
+transform = Transform3D(0.3157482, 0, -0.948843, 0, 1, 0, 0.948843, 0, 0.3157482, 0, 2.2694988, -29.309666)
+metadata/Scale = 15.0
+metadata/Height = 2
+
+[node name="Budynek" parent="." unique_id=1640971299 instance=ExtResource("1_ee4bf")]
 transform = Transform3D(0.8110944, 0, -0.5849153, 0, 1, 0, 0.5849153, 0, 0.8110944, -33.04, 0.5, 4.43)
 metadata/Scale = 10.0
 metadata/Height = 5
