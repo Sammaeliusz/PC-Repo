@@ -47,7 +47,7 @@ for Steepness = 1:Simulation_Step:4
         Estimator(i) = (sum(Data(max(1, i - bestMemory):i))) / bestMemory;
     end
 
-
+    %{
     figure
     hold on
     plot(x, y);
@@ -55,6 +55,7 @@ for Steepness = 1:Simulation_Step:4
     plot(x, Estimator);
     legend('True y', 'Data with Noise', 'Estimator');
     hold off
+    %}
 end
 x_min = 2;
 x_max = 30;
@@ -68,9 +69,9 @@ min_value_per_plot(MSE)
 
 clear MSE;
 kernel_min = 1;
-kernel_max = 10;
+kernel_max = 40;
 Steepness = 1;
-Simulation_Step = 1;
+Simulation_Step = 2;
 MSE = zeros(ceil((kernel_max-kernel_min)/Simulation_Step), 100);
 for Kernel = kernel_min:Simulation_Step:kernel_max
     Noise = (rand(size(x))*2*Kernel) - Kernel; % [-1.5, 1.5]
@@ -99,7 +100,7 @@ for Kernel = kernel_min:Simulation_Step:kernel_max
         Estimator(i) = (sum(Data(max(1, i - bestMemory):i))) / bestMemory;
     end
 
-%%{
+%{
     figure
     hold on
     plot(x, y);

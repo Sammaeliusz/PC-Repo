@@ -1,6 +1,6 @@
 [gd_scene format=3 uid="uid://cmc5a4dqynjn3"]
 
-[ext_resource type="Script" uid="uid://dthr3u0nyr2gd" path="res://Signal_tunel.gd" id="1_dhe1o"]
+[ext_resource type="Script" uid="uid://dthr3u0nyr2gd" path="res://Scripts/Signal_tunel.gd" id="1_dhe1o"]
 [ext_resource type="Script" uid="uid://dmopm1jk8rq7j" path="res://UI/Size_Controll.gd" id="1_q0uhn"]
 
 [sub_resource type="GDScript" id="GDScript_3b2b5"]

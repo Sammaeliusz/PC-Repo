@@ -1,8 +1,17 @@
 [gd_scene format=3 uid="uid://bbn6pucn63hwh"]
 
 [ext_resource type="Script" uid="uid://crfi5dpqdl87p" path="res://Prefabs/Resizer.gd" id="1_pquve"]
+[ext_resource type="Shader" uid="uid://dfpuerptaciq4" path="res://Shaders/lorentz.gdshader" id="2_sa4dk"]
+[ext_resource type="Script" uid="uid://c25xk2ju10g3o" path="res://Prefabs/Building/vel_change.gd" id="3_cl36j"]
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_c8jhs"]
+render_priority = 0
+shader = ExtResource("2_sa4dk")
+shader_parameter/velocity = Vector3(1, 0, 0)
+shader_parameter/speed_of_light_scale = 1.0
 
 [sub_resource type="BoxMesh" id="BoxMesh_gcxk6"]
+material = SubResource("ShaderMaterial_c8jhs")
 
 [sub_resource type="BoxShape3D" id="BoxShape3D_v2sh2"]
 
@@ -14,6 +23,7 @@ metadata/Color = Color(0, 0, 0, 1)
 
 [node name="MeshInstance3D" type="MeshInstance3D" parent="." unique_id=1299918008]
 mesh = SubResource("BoxMesh_gcxk6")
+script = ExtResource("3_cl36j")
 
 [node name="StaticBody3D" type="StaticBody3D" parent="." unique_id=947940294]
 
