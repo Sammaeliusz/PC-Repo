@@ -1,0 +1,52 @@
+[gd_scene format=3 uid="uid://qsl33bb5v37u"]
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_126ht"]
+
+[sub_resource type="BoxMesh" id="BoxMesh_126ht"]
+
+[node name="Tablica" type="Node3D" unique_id=1072366689]
+
+[node name="SpotLight3D2" type="SpotLight3D" parent="." unique_id=1159319408]
+transform = Transform3D(1, 0, 0, 0, 0.70710677, 0.70710677, 0, -0.70710677, 0.70710677, 2, 9, 3)
+light_energy = 8.0
+spot_range = 6.0
+spot_angle = 35.0
+
+[node name="SpotLight3D" type="SpotLight3D" parent="." unique_id=478025439]
+transform = Transform3D(1, 0, 0, 0, 0.70710677, 0.70710677, 0, -0.70710677, 0.70710677, -2, 9, 3)
+light_energy = 8.0
+spot_range = 6.0
+spot_angle = 35.0
+
+[node name="Board" type="Node3D" parent="." unique_id=1218617441]
+transform = Transform3D(10, 0, 0, 0, 7, 0, 0, 0, 0.25, 0, 5, 0)
+
+[node name="StaticBody3D" type="StaticBody3D" parent="Board" unique_id=1363159402]
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Board/StaticBody3D" unique_id=15443697]
+shape = SubResource("BoxShape3D_126ht")
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="Board" unique_id=958422915]
+mesh = SubResource("BoxMesh_126ht")
+
+[node name="Label3D" type="Label3D" parent="Board" unique_id=1708179328]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.47336647, 0.4603405, 0.51)
+pixel_size = 0.001
+text = "TODO:
+-Dodawanie prędkości u'=(u+v)/(1+vu/c^2)
+-Skrócenie Lorentza-Fitzgeralda L(v)=L(0)sqrt(1-v^2/c^2)
+-Dylatacja czasu gamma delta t
+- Relatywistyczny efekt Dopplera 
+-- Z dylatacji czasu: f=f'/gamma
+--Efekt Dopplera f = Df'
+--Jasność źródła L=D^4L'
+[gamma = 1/sqrt(1-beta^2)] 
+[beta=tgh(fi)=v/c]
+[D=(1+v cos(theta)/c)/sqrt(1-beta^2)]
+[theta kąt między wektorem prędkości a prostą łączącą obiekty]"
+outline_size = 16
+horizontal_alignment = 0
+vertical_alignment = 0
+line_spacing = 5.0
+autowrap_mode = 2
+width = 1000.0
