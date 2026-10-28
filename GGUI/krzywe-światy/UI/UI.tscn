@@ -43,19 +43,11 @@ script = ExtResource("1_q0uhn")
 
 [node name="VBoxContainer" type="VBoxContainer" parent="MarginContainer" unique_id=1431461424]
 layout_mode = 2
-size_flags_vertical = 8
+size_flags_vertical = 0
 
 [node name="HBoxContainer" type="HBoxContainer" parent="MarginContainer/VBoxContainer" unique_id=504929809]
 layout_mode = 2
 alignment = 1
-
-[node name="HBoxContainer3" type="HBoxContainer" parent="MarginContainer/VBoxContainer/HBoxContainer" unique_id=1196130220]
-layout_mode = 2
-size_flags_horizontal = 3
-
-[node name="HBoxContainer" type="HBoxContainer" parent="MarginContainer/VBoxContainer/HBoxContainer" unique_id=451638008]
-layout_mode = 2
-size_flags_horizontal = 3
 
 [node name="HBoxContainer2" type="HBoxContainer" parent="MarginContainer/VBoxContainer/HBoxContainer" unique_id=351854421]
 layout_mode = 2
@@ -64,8 +56,8 @@ alignment = 1
 
 [node name="SpinBox" type="SpinBox" parent="MarginContainer/VBoxContainer/HBoxContainer/HBoxContainer2" unique_id=2034226594]
 layout_mode = 2
-max_value = 1.0
-step = 0.01
+max_value = 0.999
+step = 0.001
 alignment = 1
 
 [node name="HSlider" type="HSlider" parent="MarginContainer/VBoxContainer/HBoxContainer/HBoxContainer2" unique_id=657065598]
@@ -73,7 +65,16 @@ layout_mode = 2
 size_flags_horizontal = 3
 size_flags_vertical = 1
 max_value = 1.0
-step = 0.01
+step = 0.001
+scrollable = false
+
+[node name="HBoxContainer3" type="HBoxContainer" parent="MarginContainer/VBoxContainer/HBoxContainer" unique_id=1196130220]
+layout_mode = 2
+size_flags_horizontal = 3
+
+[node name="HBoxContainer" type="HBoxContainer" parent="MarginContainer/VBoxContainer/HBoxContainer" unique_id=451638008]
+layout_mode = 2
+size_flags_horizontal = 3
 
 [connection signal="value_changed" from="MarginContainer/VBoxContainer/HBoxContainer/HBoxContainer2/SpinBox" to="MarginContainer/VBoxContainer/HBoxContainer/HBoxContainer2/HSlider" method="set_value"]
 [connection signal="value_changed" from="MarginContainer/VBoxContainer/HBoxContainer/HBoxContainer2/HSlider" to="MarginContainer/VBoxContainer/HBoxContainer/HBoxContainer2/SpinBox" method="set_value_no_signal"]

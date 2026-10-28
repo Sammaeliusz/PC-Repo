@@ -34,7 +34,7 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.47336647, 0.4603405, 0.51)
 pixel_size = 0.001
 text = "TODO:
 -Dodawanie prędkości u'=(u+v)/(1+vu/c^2)
--Skrócenie Lorentza-Fitzgeralda L(v)=L(0)sqrt(1-v^2/c^2)
++/-Skrócenie Lorentza-Fitzgeralda L(v)=L(0)sqrt(1-v^2/c^2)
 -Dylatacja czasu gamma delta t
 - Relatywistyczny efekt Dopplera 
 -- Z dylatacji czasu: f=f'/gamma
