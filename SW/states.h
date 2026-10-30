@@ -3,5 +3,5 @@
 #include <stdint.h>
 #include "state_machine.h"
 #include <stdio.h>
-void dummyState(struct machine* machina);
+void dummyState(struct state stan, struct machine* machina);
 #endif

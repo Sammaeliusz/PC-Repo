@@ -1,4 +1,4 @@
 #include "states.h"
-void dummyState(struct machine* machina){
+void dummyState(struct state kontekst, struct machine* machina){
     printf("From the dummy state");
 }
