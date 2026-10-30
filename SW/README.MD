@@ -13,5 +13,6 @@
 * Funkcje stanu muszą być typu void
 * W funkcjach stanu można korzystać z lokalnych zmiennych
 * Funkcje stanu powinny być atomiczne i nieblokujące
+* Stany do maszyny zawsze należy dodawać przez addState
 ## Przerwania
 Jeśli podczas zmiany stanu jedna z komórek pamięci int16(1-16) jest zerem aktywnym stanem staje się stan przypisany do tej komórki(1->1, 2->2, ..., 16->16). Jeśli więcej niż 1 komórka jest zerowa, aktywnym stanem jest stan o najniższym numerze.

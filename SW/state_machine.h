@@ -16,6 +16,8 @@ struct state
  
 struct machine{
     struct state* p_to_state_array;
+    int16_t num_of_states;
+    int16_t max_num_of_states;
     int16_t current_state;
     int16_t next_state;
     /*context*/
@@ -28,4 +30,5 @@ struct machine* createMachine(int16_t num_of_states, int16_t num_of_registers, i
 struct state createState();
 void startMachine(struct machine* machine_to_start);
 void interruptHandler(struct machine* machina);
+void addState(struct machine* machina, struct state stan);
 #endif
