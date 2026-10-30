@@ -15,9 +15,9 @@ struct state createState(){
 }
 void startMachine(struct machine* machine_to_start){
     while(machine_to_start->next_state != -1){
-        printf("Maszyna dziala\n");
+        //printf("Maszyna dziala\n");
         machine_to_start->current_state = machine_to_start -> next_state;
-        machine_to_start -> next_state = -1;
+        //machine_to_start -> next_state = -1;
         (machine_to_start->p_to_state_array+machine_to_start->current_state)->p_to_state_function();
     }
 }
