@@ -1,9 +1,0 @@
-services:
-  postgres:
-    image: 'postgres:latest'
-    environment:
-      - 'POSTGRES_PASSWORD=secret'
-      - 'POSTGRES_DB=WKGP'
-      - 'POSTGRES_USER=admin'
-    ports:
-      - '5432'
