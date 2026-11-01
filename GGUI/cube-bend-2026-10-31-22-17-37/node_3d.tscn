@@ -1,0 +1,129 @@
+[gd_scene format=3 uid="uid://dx1fe034sp1vh"]
+
+[ext_resource type="Script" uid="uid://dqkuenqkgec3b" path="res://main.gd" id="1_a0tk4"]
+[ext_resource type="Material" uid="uid://mt5g8vjx2dpy" path="res://green.tres" id="2_r3fl7"]
+[ext_resource type="Shader" uid="uid://c26len2lugxvi" path="res://lorenz.gdshader" id="3_jka67"]
+[ext_resource type="Material" uid="uid://co8vn012yxb68" path="res://blue.tres" id="3_r3fl7"]
+[ext_resource type="Material" uid="uid://caq6yt4j0q4s6" path="res://red.tres" id="4_jka67"]
+
+[sub_resource type="Environment" id="Environment_mjo2x"]
+background_mode = 1
+background_color = Color(0.62152386, 0.62152386, 0.6215238, 1)
+ambient_light_source = 1
+ambient_light_color = Color(1, 1, 1, 1)
+
+[sub_resource type="CameraAttributesPractical" id="CameraAttributesPractical_jpqg3"]
+
+[sub_resource type="Compositor" id="Compositor_2ikhr"]
+
+[sub_resource type="Environment" id="Environment_jpqg3"]
+
+[sub_resource type="CameraAttributesPractical" id="CameraAttributesPractical_ueem0"]
+
+[sub_resource type="Compositor" id="Compositor_rkhke"]
+
+[sub_resource type="QuadMesh" id="QuadMesh_jka67"]
+material = ExtResource("2_r3fl7")
+flip_faces = true
+size = Vector2(30, 30)
+
+[sub_resource type="QuadMesh" id="QuadMesh_wc5p8"]
+material = ExtResource("2_r3fl7")
+size = Vector2(30, 30)
+
+[sub_resource type="QuadMesh" id="QuadMesh_rkhke"]
+size = Vector2(30, 30)
+
+[sub_resource type="QuadMesh" id="QuadMesh_00hid"]
+lightmap_size_hint = Vector2i(152, 152)
+material = ExtResource("3_r3fl7")
+size = Vector2(30, 30)
+
+[sub_resource type="QuadMesh" id="QuadMesh_piyuw"]
+size = Vector2(30, 30)
+
+[sub_resource type="QuadMesh" id="QuadMesh_lr6rx"]
+lightmap_size_hint = Vector2i(152, 152)
+material = ExtResource("4_jka67")
+size = Vector2(30, 30)
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_mjo2x"]
+shader = ExtResource("3_jka67")
+shader_parameter/beta = 0.0
+
+[node name="Node3D" type="Node3D" unique_id=751358987]
+script = ExtResource("1_a0tk4")
+
+[node name="WorldEnvironment" type="WorldEnvironment" parent="." unique_id=1779808375]
+environment = SubResource("Environment_mjo2x")
+camera_attributes = SubResource("CameraAttributesPractical_jpqg3")
+compositor = SubResource("Compositor_2ikhr")
+
+[node name="Camera3D" type="Camera3D" parent="." unique_id=1534776879]
+transform = Transform3D(-1, 0, 8.742278e-08, 0, 1, 0, -8.742278e-08, 0, -1, 0, 0, 0)
+environment = SubResource("Environment_jpqg3")
+attributes = SubResource("CameraAttributesPractical_ueem0")
+compositor = SubResource("Compositor_rkhke")
+fov = 37.849285
+
+[node name="Cube" type="Node3D" parent="." unique_id=1521497695]
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="Cube" unique_id=1438578663]
+transform = Transform3D(-1, 0, -1.509958e-07, 0, 1, 0, 1.509958e-07, 0, -1, 0, 0, -15)
+mesh = SubResource("QuadMesh_jka67")
+surface_material_override/0 = ExtResource("2_r3fl7")
+
+[node name="MeshInstance3D2" type="MeshInstance3D" parent="Cube" unique_id=1405421239]
+transform = Transform3D(-1, 0, -1.509958e-07, 0, 1, 0, 1.509958e-07, 0, -1, 0, 0, 15)
+mesh = SubResource("QuadMesh_wc5p8")
+surface_material_override/0 = ExtResource("2_r3fl7")
+
+[node name="MeshInstance3D3" type="MeshInstance3D" parent="Cube" unique_id=327273085]
+transform = Transform3D(-4.371139e-08, 0, 1, 0, 1, 0, -1, 0, -4.371139e-08, -15, 0, 0)
+mesh = SubResource("QuadMesh_rkhke")
+surface_material_override/0 = ExtResource("3_r3fl7")
+
+[node name="MeshInstance3D4" type="MeshInstance3D" parent="Cube" unique_id=1019262509]
+transform = Transform3D(-7.549791e-08, -8.742277e-08, -1, -8.742278e-08, -1, 8.742278e-08, -1, 8.7422784e-08, 7.54979e-08, 15, 0, 0)
+cast_shadow = 0
+mesh = SubResource("QuadMesh_00hid")
+surface_material_override/0 = ExtResource("3_r3fl7")
+
+[node name="MeshInstance3D5" type="MeshInstance3D" parent="Cube" unique_id=754824448]
+transform = Transform3D(1, 0, 0, 0, -4.371139e-08, 1, 0, -1, -4.371139e-08, 0, -15, 0)
+mesh = SubResource("QuadMesh_piyuw")
+surface_material_override/0 = ExtResource("4_jka67")
+
+[node name="MeshInstance3D6" type="MeshInstance3D" parent="Cube" unique_id=822633930]
+transform = Transform3D(1, 0, 0, 0, -4.371139e-08, -1, 0, 1, -4.371139e-08, 0, 15, 0)
+mesh = SubResource("QuadMesh_lr6rx")
+surface_material_override/0 = ExtResource("4_jka67")
+
+[node name="CanvasLayer" type="CanvasLayer" parent="." unique_id=2138349023]
+scale = Vector2(1.01, 1.01)
+transform = Transform2D(1.01, 0, 0, 1.01, 0, 0)
+
+[node name="ColorRect" type="ColorRect" parent="CanvasLayer" unique_id=700045205]
+material = SubResource("ShaderMaterial_mjo2x")
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = -1.0
+offset_right = -1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="VBoxContainer" type="VBoxContainer" parent="CanvasLayer" unique_id=1294841616]
+offset_right = 40.0
+offset_bottom = 40.0
+
+[node name="HSlider" type="HSlider" parent="CanvasLayer/VBoxContainer" unique_id=986652785]
+layout_mode = 2
+min_value = -0.999
+max_value = 0.999
+step = 0.001
+value = 0.0010000000000000009
+allow_greater = true
+
+[node name="Label" type="Label" parent="CanvasLayer/VBoxContainer" unique_id=1613540877]
+layout_mode = 2

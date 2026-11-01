@@ -1,0 +1,10 @@
+[gd_resource type="ShaderMaterial" format=3 uid="uid://co8vn012yxb68"]
+
+[ext_resource type="Shader" uid="uid://bjdngmdjcibop" path="res://checkerboard.gdshader" id="1_20fej"]
+
+[resource]
+render_priority = 0
+shader = ExtResource("1_20fej")
+shader_parameter/color1 = Color(0, 0, 1, 1)
+shader_parameter/color2 = Color(0, 0, 0, 1)
+shader_parameter/scale = 150.0
