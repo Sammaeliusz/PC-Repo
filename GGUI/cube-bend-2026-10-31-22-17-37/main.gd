@@ -31,12 +31,13 @@ func _speed_change(value: float) -> void:
 		label.text = "Prędkość (tył): %.3f c" % value
 		
 func _process(delta: float) -> void:
-	var to_light = light.global_position - camera.global_position
+	var camera_dir = -camera.global_transform.basis.z
+	var to_light = light.global_position - camera_dir
 	to_light = to_light/to_light.length()
-	var cos_theta = -to_light.dot(camera.rotation/camera.rotation.length())
+	var cos_theta = -to_light.dot(camera_dir)
 	var l_color : Color = light.light_color
-	l_color.h = max(0,min(255,start_hue+255*(1-(1-slider.value*cos_theta))))
-	l_color.s = 255-255*(1-(1-slider.value*cos_theta))
+	l_color.h = max(0,min(255,start_hue+255*1-(1-slider.value*cos_theta)))
+	#l_color.s = 255-255*(1-(1-slider.value*cos_theta))
 	light.light_color = l_color
 	# Obsługa poruszania sie do przodu i tyłu 
 	var move_dir = Vector3.ZERO
