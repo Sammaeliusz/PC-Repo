@@ -26,15 +26,28 @@ void fragment() {
 		float factor = 1.0 + (b_abs*8.0) *r;
 		uv = uv * factor;
 	}
-	
 	// Przywrócenie proporcji i przesunięcie z powrotem do [0, 1]
 	uv.x /= aspect;
 	vec2 target_uv = uv + vec2(0.5);
 	
-	// Dla lepszej widocznści czarne marginesy poza przestrzenią zakrzywień
-	if((target_uv.x >= 0.0 && target_uv.x <= 1.0) && (target_uv.y >= 0.0 && target_uv.y <= 1.0)){
-		COLOR = texture(SCREEN_TEXTURE, target_uv);
+	// Zmiany kolorystyczne
+	if(target_uv.x >= 0.0 && target_uv.x <= 1.0 && target_uv.y >= 0.0 && target_uv.y <= 1.0){
+		vec4 color = texture(SCREEN_TEXTURE, target_uv);
+		//Blue shift
+		if(beta> 0.0){
+			//color.r *= (1.0 - beta * 0.7);
+			//color.g += beta * 0.15;
+			//color.b += beta * 0.4;
+		}
+		// Red shift
+		else if(beta < 0.0){
+			//color.r += abs(beta) * 0.5;
+			//color.g *= (1.0 - abs(beta) * 0.3);
+			//color.b *= (1.0 - abs(beta) * 0.7);
+		}
+		COLOR = color;
 	}
+	// Ciemne tło jak było
 	else{
 		COLOR = vec4(0.0, 0.0, 0.0, 1.0);
 	}

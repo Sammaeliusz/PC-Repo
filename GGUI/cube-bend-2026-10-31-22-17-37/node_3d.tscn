@@ -1,10 +1,11 @@
 [gd_scene format=3 uid="uid://dx1fe034sp1vh"]
 
 [ext_resource type="Script" uid="uid://dqkuenqkgec3b" path="res://main.gd" id="1_a0tk4"]
-[ext_resource type="Material" uid="uid://mt5g8vjx2dpy" path="res://green.tres" id="2_r3fl7"]
-[ext_resource type="Shader" uid="uid://c26len2lugxvi" path="res://lorenz.gdshader" id="3_jka67"]
-[ext_resource type="Material" uid="uid://co8vn012yxb68" path="res://blue.tres" id="3_r3fl7"]
-[ext_resource type="Material" uid="uid://caq6yt4j0q4s6" path="res://red.tres" id="4_jka67"]
+[ext_resource type="Material" uid="uid://mt5g8vjx2dpy" path="res://Materials/green.tres" id="2_r3fl7"]
+[ext_resource type="Shader" uid="uid://c26len2lugxvi" path="res://Shaders/lorenz.gdshader" id="3_jka67"]
+[ext_resource type="Material" uid="uid://co8vn012yxb68" path="res://Materials/blue.tres" id="3_r3fl7"]
+[ext_resource type="Material" uid="uid://caq6yt4j0q4s6" path="res://Materials/red.tres" id="4_jka67"]
+[ext_resource type="Material" uid="uid://bj5dn2gn06jad" path="res://Materials/white.tres" id="5_i5arm"]
 
 [sub_resource type="Environment" id="Environment_mjo2x"]
 background_mode = 1
@@ -44,7 +45,7 @@ size = Vector2(30, 30)
 
 [sub_resource type="QuadMesh" id="QuadMesh_lr6rx"]
 lightmap_size_hint = Vector2i(152, 152)
-material = ExtResource("4_jka67")
+material = ExtResource("5_i5arm")
 size = Vector2(30, 30)
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_mjo2x"]
@@ -53,6 +54,11 @@ shader_parameter/beta = 0.0
 
 [node name="Node3D" type="Node3D" unique_id=751358987]
 script = ExtResource("1_a0tk4")
+
+[node name="OmniLight3D" type="OmniLight3D" parent="." unique_id=1503707146]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.1174593, 10.3049755, 0)
+light_energy = 16.0
+omni_range = 4096.0
 
 [node name="WorldEnvironment" type="WorldEnvironment" parent="." unique_id=1779808375]
 environment = SubResource("Environment_mjo2x")
@@ -97,7 +103,6 @@ surface_material_override/0 = ExtResource("4_jka67")
 [node name="MeshInstance3D6" type="MeshInstance3D" parent="Cube" unique_id=822633930]
 transform = Transform3D(1, 0, 0, 0, -4.371139e-08, -1, 0, 1, -4.371139e-08, 0, 15, 0)
 mesh = SubResource("QuadMesh_lr6rx")
-surface_material_override/0 = ExtResource("4_jka67")
 
 [node name="CanvasLayer" type="CanvasLayer" parent="." unique_id=2138349023]
 scale = Vector2(1.01, 1.01)
@@ -127,3 +132,8 @@ allow_greater = true
 
 [node name="Label" type="Label" parent="CanvasLayer/VBoxContainer" unique_id=1613540877]
 layout_mode = 2
+
+[node name="SL_Toggle" type="CheckButton" parent="CanvasLayer/VBoxContainer" unique_id=2022703835]
+layout_mode = 2
+button_pressed = true
+text = "Skrócenie Lotentza"
