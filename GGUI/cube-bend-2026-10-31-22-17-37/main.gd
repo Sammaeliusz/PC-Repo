@@ -25,9 +25,9 @@ func _speed_change(value: float) -> void:
 		shader_material.set_shader_parameter("beta", 0)
 	
 	#Przydatny label, żeby widzieć prędkość i przód/tył
-	if value >= 0:
+	if value > 0:
 		label.text = "Prędkość (przód): %.3f c" % value
-	else:
+	elif value < 0:
 		label.text = "Prędkość (tył): %.3f c" % value
 		
 func _process(delta: float) -> void:
