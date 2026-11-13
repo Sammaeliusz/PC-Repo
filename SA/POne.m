@@ -59,14 +59,14 @@ for c = 1:3
     
     grid on;
     title(sprintf('%s (Best Memory = %d)', cases(c).name, best_memories(c)));
-    xlabel('x');
-    ylabel('y');
+    xlabel('n');
+    ylabel('theta');
     legend('True y', 'Data with Noise', sprintf('Estimator (Memory = %d)', best_memories(c)), ...
            'Location', 'northwest');
 end
 
 %-----------------------------------------------------------------------------
-figure('Name', 'MSE vs Memory (Separate Subplots)', 'NumberTitle', 'off');
+figure('Name', 'IMSE vs Memory (Separate Subplots)', 'NumberTitle', 'off');
 
 colors = {'b', 'g', 'r'};
 
@@ -77,11 +77,12 @@ for c = 1:3
     % Highlight best memory point
     plot(best_memories(c), min_mse(c), 'ko', 'MarkerFaceColor', 'y', 'MarkerSize', 8);
     hold off;
-
+   % ylim([0,500]);
+   % xlim([0, 50]);
     grid on;
-    title(sprintf('%s - MSE vs Memory (Min MSE = %.2f at Memory = %d)', ...
+    title(sprintf('%s - IMSE vs Memory (Min IMSE = %.2f at Memory = %d)', ...
         cases(c).name, min_mse(c), best_memories(c)));
     xlabel('Memory Window');
-    ylabel('MSE');
-    legend('MSE Curve', 'Optimal Memory', 'Location', 'northeast');
+    ylabel('IMSE');
+    legend('IMSE Curve', 'Optimal Memory', 'Location', 'northeast');
 end
