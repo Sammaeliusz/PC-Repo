@@ -6,6 +6,7 @@
 [ext_resource type="Material" uid="uid://co8vn012yxb68" path="res://Materials/blue.tres" id="3_r3fl7"]
 [ext_resource type="Material" uid="uid://caq6yt4j0q4s6" path="res://Materials/red.tres" id="4_jka67"]
 [ext_resource type="Material" uid="uid://bj5dn2gn06jad" path="res://Materials/white.tres" id="5_i5arm"]
+[ext_resource type="PackedScene" uid="uid://qof31cle78d" path="res://zegar.tscn" id="7_wc5p8"]
 
 [sub_resource type="Environment" id="Environment_mjo2x"]
 background_mode = 1
@@ -73,6 +74,9 @@ attributes = SubResource("CameraAttributesPractical_ueem0")
 compositor = SubResource("Compositor_rkhke")
 fov = 37.849285
 
+[node name="Zegar_Wew" parent="Camera3D" unique_id=1692262862 instance=ExtResource("7_wc5p8")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 2.4, 1.1, -5)
+
 [node name="Cube" type="Node3D" parent="." unique_id=1521497695]
 
 [node name="MeshInstance3D" type="MeshInstance3D" parent="Cube" unique_id=1438578663]
@@ -138,3 +142,8 @@ layout_mode = 2
 layout_mode = 2
 button_pressed = true
 text = "Skrócenie Lotentza"
+
+[node name="Zegar" parent="." unique_id=1798068697 instance=ExtResource("7_wc5p8")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, -14.390163)
+
+[connection signal="value_changed" from="CanvasLayer/VBoxContainer/HSlider" to="Zegar" method="_time_dilatation"]

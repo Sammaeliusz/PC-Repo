@@ -1,0 +1,38 @@
+[gd_scene format=3 uid="uid://qof31cle78d"]
+
+[ext_resource type="Script" uid="uid://cbbmi4yoj1f1u" path="res://TicTac.gd" id="1_1b6hd"]
+[ext_resource type="Material" uid="uid://bwnd6foetnba8" path="res://Materials/gold.tres" id="2_4gn8r"]
+
+[sub_resource type="CylinderMesh" id="CylinderMesh_gcxk6"]
+height = 0.1
+
+[sub_resource type="CylinderMesh" id="CylinderMesh_gpcxa"]
+top_radius = 0.4
+bottom_radius = 0.4
+height = 0.05
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_v2sh2"]
+albedo_color = Color(1, 0, 0, 1)
+roughness = 0.4
+
+[sub_resource type="PrismMesh" id="PrismMesh_gcxk6"]
+material = SubResource("StandardMaterial3D_v2sh2")
+size = Vector3(0.1, 0.4, 0.05)
+
+[node name="Zegar" type="Node3D" unique_id=1692262862]
+script = ExtResource("1_1b6hd")
+
+[node name="Cialo" type="MeshInstance3D" parent="." unique_id=999187255]
+transform = Transform3D(1, 0, 0, 0, -4.371139e-08, -1, 0, 1, -4.371139e-08, 0, 0, 0)
+material_override = ExtResource("2_4gn8r")
+mesh = SubResource("CylinderMesh_gcxk6")
+
+[node name="Cyferblat" type="MeshInstance3D" parent="." unique_id=379064529]
+transform = Transform3D(1, 0, 0, 0, -4.371139e-08, -1, 0, 1, -4.371139e-08, 0, 0, 0.028584957)
+mesh = SubResource("CylinderMesh_gpcxa")
+
+[node name="Wskazowka" type="Node3D" parent="." unique_id=2089942817]
+
+[node name="Wskazowka_Mesh" type="MeshInstance3D" parent="Wskazowka" unique_id=682635713]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.18930128, 0.065160215)
+mesh = SubResource("PrismMesh_gcxk6")
