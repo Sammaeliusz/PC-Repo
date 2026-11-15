@@ -34,17 +34,17 @@ void fragment() {
 	if(target_uv.x >= 0.0 && target_uv.x <= 1.0 && target_uv.y >= 0.0 && target_uv.y <= 1.0){
 		vec4 color = texture(SCREEN_TEXTURE, target_uv);
 		//Blue shift
-		if(beta> 0.0){
+		//if(beta> 0.0){
 			//color.r *= (1.0 - beta * 0.7);
 			//color.g += beta * 0.15;
 			//color.b += beta * 0.4;
-		}
+		//}
 		// Red shift
-		else if(beta < 0.0){
+		//else if(beta < 0.0){
 			//color.r += abs(beta) * 0.5;
 			//color.g *= (1.0 - abs(beta) * 0.3);
 			//color.b *= (1.0 - abs(beta) * 0.7);
-		}
+		//}
 		COLOR = color;
 	}
 	// Ciemne tło jak było
