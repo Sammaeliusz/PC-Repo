@@ -40,9 +40,8 @@ func _process(delta: float) -> void:
 	var l_color : Color = light.light_color
 	l_color.h = clampf(start_hue*(1-slider.value*cos_theta),0.0, 1.0)
 	light.light_color = l_color
-	var intensity_multiplier = pow((1.0 + (slider.value * max(0.0, cos_theta)))/(sqrt(1-slider.value*slider.value)),4)
-	light.light_energy = start_energy * intensity_multiplier * slider.value/abs(slider.value)
-	
+	var intensity_multiplier = pow((sqrt(1-slider.value*slider.value))/(1.0 - (slider.value * -cos_theta)),4)
+	light.light_energy = start_energy * intensity_multiplier
 	# Obsługa poruszania sie do przodu i tyłu 
 	var move_dir = Vector3.ZERO
 	if Input.is_action_pressed("ui_up"):
