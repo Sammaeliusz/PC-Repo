@@ -7,6 +7,7 @@
 [ext_resource type="Material" uid="uid://caq6yt4j0q4s6" path="res://Materials/red.tres" id="4_jka67"]
 [ext_resource type="Material" uid="uid://bj5dn2gn06jad" path="res://Materials/white.tres" id="5_i5arm"]
 [ext_resource type="PackedScene" uid="uid://qof31cle78d" path="res://zegar.tscn" id="7_wc5p8"]
+[ext_resource type="Shader" uid="uid://bjdngmdjcibop" path="res://Shaders/checkerboard.gdshader" id="8_jsk3o"]
 
 [sub_resource type="Environment" id="Environment_mjo2x"]
 background_mode = 1
@@ -53,6 +54,23 @@ size = Vector2(30, 30)
 shader = ExtResource("3_jka67")
 shader_parameter/beta = 0.0
 
+[sub_resource type="BoxMesh" id="BoxMesh_mjo2x"]
+size = Vector3(0.2, 0.1, 8)
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_jpqg3"]
+render_priority = 0
+shader = ExtResource("8_jsk3o")
+shader_parameter/color1 = Color(0, 0, 0, 1)
+shader_parameter/color2 = Color(0.8, 0.8, 0.8, 1)
+shader_parameter/scale = 50.0000023275
+
+[sub_resource type="SphereMesh" id="SphereMesh_mjo2x"]
+radius = 0.3
+height = 0.6
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_jpqg3"]
+albedo_color = Color(1, 0.8117647, 0, 1)
+
 [node name="Node3D" type="Node3D" unique_id=751358987]
 script = ExtResource("1_a0tk4")
 
@@ -68,7 +86,7 @@ camera_attributes = SubResource("CameraAttributesPractical_jpqg3")
 compositor = SubResource("Compositor_2ikhr")
 
 [node name="Camera3D" type="Camera3D" parent="." unique_id=1534776879]
-transform = Transform3D(-1, 0, 8.742278e-08, 0, 1, 0, -8.742278e-08, 0, -1, 0, 0, 0)
+transform = Transform3D(-1, 0, -8.742278e-08, 0, 1, 0, 8.742278e-08, 0, -1, 0, 0, 0)
 environment = SubResource("Environment_jpqg3")
 attributes = SubResource("CameraAttributesPractical_ueem0")
 compositor = SubResource("Compositor_rkhke")
@@ -145,5 +163,17 @@ text = "Skrócenie Lotentza"
 
 [node name="Zegar" parent="." unique_id=1798068697 instance=ExtResource("7_wc5p8")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, -14.390163)
+
+[node name="Ruler" type="Node3D" parent="." unique_id=1638831591]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.5, 0)
+
+[node name="RulerMesh" type="MeshInstance3D" parent="Ruler" unique_id=89738264]
+mesh = SubResource("BoxMesh_mjo2x")
+surface_material_override/0 = SubResource("ShaderMaterial_jpqg3")
+
+[node name="BallMesh" type="MeshInstance3D" parent="Ruler" unique_id=27458958]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.35, 0)
+mesh = SubResource("SphereMesh_mjo2x")
+surface_material_override/0 = SubResource("StandardMaterial3D_jpqg3")
 
 [connection signal="value_changed" from="CanvasLayer/VBoxContainer/HSlider" to="Zegar" method="_time_dilatation"]

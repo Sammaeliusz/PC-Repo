@@ -8,10 +8,16 @@ extends Node3D
 @onready var label: Label = $CanvasLayer/VBoxContainer/Label
 @onready var light: OmniLight3D = $OmniLight3D
 @onready var SL_toggle: CheckButton = $CanvasLayer/VBoxContainer/SL_Toggle
+@onready var ball: MeshInstance3D = $Ruler/BallMesh
 var shader_material: ShaderMaterial
 var auto_move: bool = false
 @onready var start_hue : float = light.light_color.h
 @onready var start_energy : float = light.light_energy
+
+const BALL_BETA: float = 0.5
+const RULER_HALF_LENGTH: float = 4.0
+const VISUAL_SPEED_SCALE: float = 3.0
+
 func _ready() -> void:
 	shader_material = color_rect.material as ShaderMaterial
 	# Odbieranie wartości "procent prędkości światła" od slidera
@@ -72,3 +78,19 @@ func _process(delta: float) -> void:
 		camera.rotate_object_local(Vector3.RIGHT, -mouse_delta.y)
 	else:
 		Input.set_mouse_mode(Input.MOUSE_MODE_VISIBLE)
+		
+	if ball:
+		var observer_beta = slider.value if SL_toggle.button_pressed else 0.0
+		# Ustaw kamerœ na rotację (0, 180, 0)
+		var alignment = camera_dir.dot(Vector3.BACK) 
+		var v_obs = observer_beta * max(0.0, alignment)
+		# Relatywistyczny wzór Einsteina
+		var v_rel = (BALL_BETA - v_obs) / (1.0 - (BALL_BETA * v_obs))
+		ball.position.x = 0.0
+		ball.position.z += v_rel * VISUAL_SPEED_SCALE * delta
+		if ball.position.z > RULER_HALF_LENGTH:
+			ball.position.z = -RULER_HALF_LENGTH
+		elif ball.position.z < -RULER_HALF_LENGTH:
+			ball.position.z = RULER_HALF_LENGTH
+		var lorentz_contraction = sqrt(max(0.01, 1.0 - (v_rel * v_rel)))
+		ball.scale = Vector3(1.0, 1.0, lorentz_contraction)
