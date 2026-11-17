@@ -80,13 +80,14 @@ func _process(delta: float) -> void:
 		Input.set_mouse_mode(Input.MOUSE_MODE_VISIBLE)
 		
 	if ball:
-		var observer_beta = slider.value if SL_toggle.button_pressed else 0.0
+		var observer_beta = slider.value
 		# Ustaw kamerœ na rotację (0, 180, 0)
 		var alignment = camera_dir.dot(Vector3.BACK) 
 		var v_obs = observer_beta * max(0.0, alignment)
 		# Relatywistyczny wzór Einsteina
 		var v_rel = (BALL_BETA - v_obs) / (1.0 - (BALL_BETA * v_obs))
 		ball.position.x = 0.0
+		print(v_rel)
 		ball.position.z += v_rel * VISUAL_SPEED_SCALE * delta
 		if ball.position.z > RULER_HALF_LENGTH:
 			ball.position.z = -RULER_HALF_LENGTH
