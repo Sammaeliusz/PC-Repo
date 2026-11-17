@@ -15,7 +15,7 @@ var auto_move: bool = false
 @onready var start_energy : float = light.light_energy
 
 const BALL_BETA: float = 0.5
-const RULER_HALF_LENGTH: float = 4.0
+const RULER_HALF_LENGTH: float = 15
 const VISUAL_SPEED_SCALE: float = 3.0
 
 func _ready() -> void:

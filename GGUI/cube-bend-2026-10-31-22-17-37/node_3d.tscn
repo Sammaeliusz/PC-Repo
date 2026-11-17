@@ -55,14 +55,14 @@ shader = ExtResource("3_jka67")
 shader_parameter/beta = 0.0
 
 [sub_resource type="BoxMesh" id="BoxMesh_mjo2x"]
-size = Vector3(0.2, 0.1, 8)
+size = Vector3(1, 0.1, 30)
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_jpqg3"]
 render_priority = 0
 shader = ExtResource("8_jsk3o")
 shader_parameter/color1 = Color(0, 0, 0, 1)
 shader_parameter/color2 = Color(0.8, 0.8, 0.8, 1)
-shader_parameter/scale = 50.0000023275
+shader_parameter/scale = 15.000000665
 
 [sub_resource type="SphereMesh" id="SphereMesh_mjo2x"]
 radius = 0.3
@@ -165,9 +165,10 @@ text = "Skrócenie Lotentza"
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, -14.390163)
 
 [node name="Ruler" type="Node3D" parent="." unique_id=1638831591]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.5, 0)
+transform = Transform3D(-4.371139e-08, 1, 0, -1, -4.371139e-08, 0, 0, 0, 1, -14.906456, -0.5, 0)
 
 [node name="RulerMesh" type="MeshInstance3D" parent="Ruler" unique_id=89738264]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.07733512, 0, -0.06640625)
 mesh = SubResource("BoxMesh_mjo2x")
 surface_material_override/0 = SubResource("ShaderMaterial_jpqg3")
 
