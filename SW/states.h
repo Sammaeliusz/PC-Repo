@@ -3,7 +3,7 @@
 #include <stdint.h>
 #include "state_machine.h"
 #include <stdio.h>
-void dummyState(struct machine* machina);
+void idleState(struct machine* machina);
 void initState(struct machine* machina);
 void measureTempState(struct machine* machina);
 void measureHumState(struct machine* machina);
