@@ -1,10 +1,11 @@
 #include "state_machine.h"
 #include "states.h"
 #include <stdbool.h>
-struct machine* createMachine(int16_t num_of_states, int16_t num_of_registers, int16_t num_of_vpointers){
+struct machine* createMachine(int16_t num_of_states, int16_t num_of_interupts, int16_t num_of_registers, int16_t num_of_vpointers){
     if(!(num_of_states < 16 || num_of_registers < 32)){
         struct machine *maszyna = malloc(sizeof(struct machine));
         maszyna->num_of_states = 0;
+        maszyna->num_of_interupts = num_of_interupts;
         maszyna->max_num_of_states = num_of_states;
         maszyna->current_state = 0;
         maszyna->next_state = 0;
