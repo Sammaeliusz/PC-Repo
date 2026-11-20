@@ -3,3 +3,5 @@ $ git status
 *.exe
 \RPi\tools
 SW/app
+/SW/RPi/tools
+/SW/RPi/WiringPi
