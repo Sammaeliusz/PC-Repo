@@ -8,6 +8,7 @@
 [ext_resource type="Material" uid="uid://bj5dn2gn06jad" path="res://Materials/white.tres" id="5_i5arm"]
 [ext_resource type="PackedScene" uid="uid://qof31cle78d" path="res://zegar.tscn" id="7_wc5p8"]
 [ext_resource type="Shader" uid="uid://bjdngmdjcibop" path="res://Shaders/checkerboard.gdshader" id="8_jsk3o"]
+[ext_resource type="PackedScene" uid="uid://ccxfulje85eka" path="res://black_hole.tscn" id="9_4arys"]
 
 [sub_resource type="Environment" id="Environment_mjo2x"]
 background_mode = 1
@@ -176,5 +177,8 @@ surface_material_override/0 = SubResource("ShaderMaterial_jpqg3")
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.35, 0)
 mesh = SubResource("SphereMesh_mjo2x")
 surface_material_override/0 = SubResource("StandardMaterial3D_jpqg3")
+
+[node name="BlackHole" parent="." unique_id=2085065868 instance=ExtResource("9_4arys")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -1.6497364, 0, 10.019183)
 
 [connection signal="value_changed" from="CanvasLayer/VBoxContainer/HSlider" to="Zegar" method="_time_dilatation"]

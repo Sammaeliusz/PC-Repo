@@ -87,7 +87,7 @@ func _process(delta: float) -> void:
 		# Relatywistyczny wzór Einsteina
 		var v_rel = (BALL_BETA - v_obs) / (1.0 - (BALL_BETA * v_obs))
 		ball.position.x = 0.0
-		print(v_rel)
+		#print(v_rel)
 		ball.position.z += v_rel * VISUAL_SPEED_SCALE * delta
 		if ball.position.z > RULER_HALF_LENGTH:
 			ball.position.z = -RULER_HALF_LENGTH
