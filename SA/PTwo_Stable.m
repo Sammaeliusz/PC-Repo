@@ -1,0 +1,51 @@
+clear; clc; close all;
+
+W_true = [6; 4; 0; 8];
+n = length(W_true);
+
+lambda =1;
+P = 100 * eye(n);
+W_hat = zeros(n, 1);
+phi = zeros(n, 1);
+
+sigma_z = 2;
+
+figure('Name', 'Estymacja wag');
+hold on; grid on;
+colors = {'r', 'g', 'b', 'm'};
+h_lines = gobjects(n, 1);
+
+for i = 1:n
+    h_lines(i) = animatedline('Color', colors{i}, 'LineWidth', 1.5);
+    yline(W_true(i), '--', 'Color', colors{i}, 'LineWidth', 1);
+end
+xlabel('Krok symulacji (k)');
+ylabel('Wartość estymowanych wag W (Theta w notatkach)');
+title('Estymacja wektora W');
+legend('W_0 (cel: 6)', '', 'W_1 (cel: 4)', '', 'W_2 (cel: 0)', '', 'W_3 (cel: 8)', '');
+
+k = 0;
+
+while true
+    k = k + 1;
+    
+    u_k = randn(); 
+    phi = [u_k; phi(1:end-1)];
+    z_k = sigma_z * randn();
+
+    y_k = W_true' * phi + z_k;
+
+    P = (1/lambda)*(P - (P *phi * phi' * P)/ (lambda + phi' * P * phi));
+
+    Pred_error = y_k - phi' * W_hat;
+    W_hat = W_hat + P * phi * Pred_error;
+
+    if mod(k, 10) == 0
+        for i = 1:n
+            addpoints(h_lines(i), k, W_hat(i));
+        end
+        drawnow limitrate;
+    end
+
+    pause(0.02);
+end
