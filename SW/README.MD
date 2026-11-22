@@ -4,7 +4,7 @@
 * Maszyna posiada M komórek pamięci przechowujących wskaźniki typu void
 * Z pamięci wskaźnikowej powinno korzystać się wyłącznie jeśli jest to absolutnie konieczne
 * Wszystkie informacje które mają zostać przechowane pomiędzy wywołaniami stanu oraz które mają zostać przekazane między stanami powinny zostać zapisane w pamięci maszyny
-* Pierwsze 17 komórek pamięci typu int16(0-16) są komórkami specjalnego przeznaczenia i należy z nich świadomie korzystać(patrz Przerwania) 
+* Pierwsze num_of_interupts+1 komórek pamięci typu int16(0-num_of_interupts) są komórkami specjalnego przeznaczenia i należy z nich świadomie korzystać(patrz Przerwania) 
 ## Stan
 * Domyślny stan maszyny to stan 0
 * Funkcje stanu zawsze przyjmują wskaźnik do maszyny

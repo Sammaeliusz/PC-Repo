@@ -33,7 +33,7 @@ void addState(struct machine* machina, state stan){
 }
 void interruptHandler(struct machine* machina){
     bool interupted = false;
-    for(int i = 1; i<=machina->num_of_interupts; i++){
+    for(int i = 1; i<=machina->num_of_interupts && !interupted; i++){
         if(machina->p_to_memory[i]==0){
             machina->current_state = i;
             interupted = true;
