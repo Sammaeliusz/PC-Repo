@@ -1,6 +1,6 @@
 clear; clc; close all;
 
-W_true = [6; 6; 0; 8];
+W_true = [6; 4; 0; 8];
 n = length(W_true);
 
 lambda =1;
@@ -22,7 +22,7 @@ end
 xlabel('Krok symulacji (k)');
 ylabel('Wartość estymowanych wag W (Theta w notatkach)');
 title('Estymacja wektora W');
-legend('W_0 (cel: 6)', '', 'W_1 (cel: 6)', '', 'W_2 (cel: 0)', '', 'W_3 (cel: 8)', '');
+legend('W_0 (cel: 6)', '', 'W_1 (cel: 4)', '', 'W_2 (cel: 0)', '', 'W_3 (cel: 8)', '');
 k = 0;
 sample_size = 500;
 W_t = zeros(sample_size,4);
@@ -35,6 +35,7 @@ for u = 1:sample_size
     z_k = sigma_z * randn();
 
     y_k = W_true' * phi + z_k;
+
     P = (1/lambda)*(P - (P *phi * phi' * P)/ (lambda + phi' * P * phi));
 
     Pred_error = y_k - phi' * W_hat;
