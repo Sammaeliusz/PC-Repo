@@ -1,0 +1,16 @@
+[gd_scene format=3 uid="uid://ccxfulje85eka"]
+
+[ext_resource type="Script" uid="uid://6vp8t0ekttek" path="res://black_hole.gd" id="1_sjfy6"]
+[ext_resource type="Material" uid="uid://cunxltgv3wrbm" path="res://Materials/BlackHoleBlack.tres" id="2_q56d7"]
+
+[sub_resource type="SphereMesh" id="SphereMesh_gcxk6"]
+
+[node name="BlackHole" type="Node3D" unique_id=2085065868]
+rotation_edit_mode = 2
+script = ExtResource("1_sjfy6")
+
+[node name="EventHorizon" type="MeshInstance3D" parent="." unique_id=1782057373]
+material_override = ExtResource("2_q56d7")
+cast_shadow = 0
+gi_mode = 0
+mesh = SubResource("SphereMesh_gcxk6")
