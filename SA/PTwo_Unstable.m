@@ -1,6 +1,5 @@
 clear; clc; close all;
 
-
 W_true = [6; 4; 0; 8];
 W_true_2 = [6; 4; 2; 8];
 n = length(W_true);
@@ -10,7 +9,7 @@ P = 100 * eye(n);
 W_hat = zeros(n, 1);
 phi = zeros(n, 1);
 
-sigma_z = 1;
+sigma_z = 2;
 
 figure('Name', 'Estymacja wag W z zapominaniem');
 hold on; grid on;
@@ -30,13 +29,13 @@ title(sprintf('Estymacja z zapominaniem (\\lambda = %.3f)', lambda));
 legend('W_0 (cel: 6)', '', 'W_1 (cel: 4)', '', 'W_2 (0 -> 2)', '', 'W_3 (cel: 8)', '', 'Location', 'best');
 
 k = 0;
-sample_size = 500;
+sample_size = 1000;
 W_t = zeros(sample_size,4);
 W_e = zeros(sample_size,4);
 for u = 1:sample_size
     k = k + 1;
 
-     if k == floor(2*sample_size/3)
+     if k == floor(sample_size/2)
         W_true = W_true_2;
     end
 
@@ -62,14 +61,14 @@ for u = 1:sample_size
     pause(0.02);
 end
 figure
-c = ["r", "g", "b", "c"]
+c = ["r", "g", "b", "c"];
 hold on
 for i=1:4
-plot(1:sample_size, (W_e(:,i)-W_t(:,i)).^2, 'k', 'LineWidth', 1.2, Color=c(i));
+plot(1:sample_size, (W_e(:,i)-W_t(:,i)), 'k', 'LineWidth', 1.2, Color=c(i));
 end
 grid on;
 xlabel('Krok symulacji (k)');
 ylabel('Błąd predykcji');
-yscale("log")
+%yscale("log")
 title('Błąd estymacji sygnału');
-legend(["MSE(W1)", "MSE(W2)", "MSE(W3)", "MSE(W4)"])
+legend(["Error(W1)", "Error(W2)", "Error(W3)", "Error(W4)"])
