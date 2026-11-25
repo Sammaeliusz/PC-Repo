@@ -8,7 +8,7 @@ P = 100 * eye(n);
 W_hat = zeros(n, 1);
 phi = zeros(n, 1);
 
-sigma_z = 2;
+sigma_z = 5;
 
 figure('Name', 'Estymacja wag');
 hold on; grid on;
@@ -55,11 +55,11 @@ figure
 c = ["r", "g", "b", "c"];
 hold on
 for i=1:4
-plot(1:sample_size, (W_e(:,i)-W_t(:,i)).^2, 'k', 'LineWidth', 1.2, Color=c(i));
+plot(1:sample_size, (W_e(:,i)-W_t(:,i)), 'k', 'LineWidth', 1.2, Color=c(i));
 end
 grid on;
 xlabel('Krok symulacji (k)');
 ylabel('Błąd predykcji');
-yscale("log")
+%yscale("log")
 title('Błąd estymacji sygnału');
-legend(["MSE(W1)", "MSE(W2)", "MSE(W3)", "MSE(W4)"])
+legend(["Error(W1)", "Error(W2)", "Error(W3)", "Error(W4)"])
